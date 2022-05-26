@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { CssBaseline } from '@mui/material';
-import { ThemeProvider } from '@mui/private-theming';
+import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider } from '@mui/material/styles';
 import primaryTheme from './themes/primaryThemes'; 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
