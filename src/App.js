@@ -6,6 +6,7 @@ import Rating from './components/Rating'
 import{getUser} from './api/apiBasicAuth';
 import{ CancelToken } from 'apisauce';
 import LoginForm from './forms/LoginForm';
+import ProfileForm from './forms/ProfileForm'
 
 const handleAPITest= async ()=>{
   const source = CancelToken.source();
@@ -19,12 +20,14 @@ function App() {
       <>
       <AppBar>
       </AppBar>
-      <AddButton color='success' onClick={handleAPITest}>Test API Call</AddButton>
+  
 
       <RemoveButton></RemoveButton>
       <Rating></Rating>
 
-      <LoginForm/>      
+      <LoginForm/>     
+
+      <ProfileForm/> 
 
 
       </>
