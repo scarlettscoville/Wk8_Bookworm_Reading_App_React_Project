@@ -27,7 +27,7 @@ function App() {
 
       <LoginForm/>     
 
-      <ProfileForm/> 
+      <ProfileForm/>
 
 
       </>
