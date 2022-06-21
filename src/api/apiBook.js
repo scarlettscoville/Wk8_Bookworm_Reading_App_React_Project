@@ -2,39 +2,23 @@ import apiClientNoAuth from './clientNoAuth';
 
 const endpoint = '/book'
 
-const get = async (cancelToken)=>{
+const getBook = async (cancelToken) => {
     let error;
     let books;
 
-    const response = await apiClientNoAuth(cancelToken).get(endpoint);
-    if (response.ok){
-        books=response.data.books
-    }else{
-        error = "An unexpected error has occurred. Please try again later."
+    const response = await apiClientNoAuth(cancelToken).get(endpoint)
+    if (response.ok) {
+        books = response.books
+    } else {
+        error = "An unexpected error has occured. Please try again later"
     }
-    return{
-        error,
-        books
-    }
-}
 
-const getBook = async (id, cancelToken)=>{
-    let error;
-    let books;
-
-    const response = await apiClientNoAuth(cancelToken).get(endpoint+'/'+id);
-    if (response.ok){
-        books=response.data
-    }else{
-        error = "An unexpected error has occurred. Please try again later."
-    }
-    return{
-        error,
+    return {
+        error, 
         books
-    }
-}
+    };
+};
 
 export default {
-    get,
-    getBook
+    getBook,
 }

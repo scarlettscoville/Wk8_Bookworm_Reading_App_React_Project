@@ -1,25 +1,43 @@
-import apiClientNoAuth from './clientNoAuth';
+import apiClientBasicAuth from './clientBasicAuth'
 import apiClientTokenAuth from './clientTokenAuth';
 
-const endpoint = '/user';
+const endpoint = '/user'
 
-const post = async (data, cancelToken)=>{
-    const response = await apiClientNoAuth(cancelToken).post(endpoint, data);
-    return response.ok
-}
+const getUser = async (email, password, cancelToken) => {
+    let error; 
+    let user;
 
-const put = async (token, data, cancelToken)=>{
-    const response = await apiClientTokenAuth(token, cancelToken).put(endpoint, data);
-    return response.ok
-}
+    const response = await apiClientBasicAuth(email, password, cancelToken).get('/login')
+    if (response.ok) {
+        user = response.data
+    } else {
+        error = "An unexpected error has occured. Please try again later"
+    }
 
-const del = async (token, cancelToken)=>{
-    const response = await apiClientTokenAuth(token, cancelToken).delete(endpoint);
+    return {
+        error, 
+        user
+    };
+};
+
+const postUser = async (data, token, cancelToken) => {
+    const response = await apiClientTokenAuth(token, cancelToken).post(endpoint)
     return response.ok
-}
+};
+
+const putUser = async (user_id, data, token, cancelToken) => {
+    const response = await apiClientTokenAuth(token, cancelToken).put(endpoint+'/'+user_id, data)
+    return response.ok
+};
+
+const removeUser = async (user_id, token, cancelToken) => {
+    const response = await apiClientTokenAuth(token, cancelToken).delete(endpoint+'/'+user_id)
+    return response.ok
+};
 
 export default {
-    post,
-    put,
-    del
+    getUser,
+    postUser,
+    putUser,
+    removeUser
 }
